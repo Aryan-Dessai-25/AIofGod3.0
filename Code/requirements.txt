@@ -1,0 +1,10 @@
+numpy
+pandas
+torch
+tqdm
+evaluate
+jiwer
+matplotlib
+transformers
+albumentations
+wandb
