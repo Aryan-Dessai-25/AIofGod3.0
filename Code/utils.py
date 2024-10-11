@@ -6,7 +6,7 @@ import torch
 import re
 from PIL import Image
 from torch.utils.data import Dataset, DataLoader, random_split
-
+import random
 from transformers import TrOCRProcessor, VisionEncoderDecoderModel
 from transformers import  Trainer, TrainingArguments
 from torch.nn.utils.rnn import pad_sequence
@@ -17,6 +17,14 @@ from torch.optim import AdamW
 from torch.optim.lr_scheduler import StepLR, ReduceLROnPlateau
 import wandb
 wandb.init(mode= 'disabled')
+
+def seed_everything(seed: int):
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
 preprocess = A.Compose([
                 A.Rotate(limit=2, p=0.5),
